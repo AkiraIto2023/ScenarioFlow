@@ -517,13 +517,13 @@ More details are described below:
   + `bool HasLabel(string label)` This simply returns whether the Scenario Book has given label or not.
   + `IScenarioPage ReadPage()`: This returns the Scenario Page that is currently opened.
   + `IEnumerable<IScenarioPage> ReadAll()`: This returns all the Scenario Pages in the Scenario Book.
-+ Scenario Book
++ Scenario Page
   + `int MaxIndex`: This is just like `int MaxIndex` in Scenario Book, except is that this returns the maximum index of the Scenario Sentence.
   + `int CurrentIndex`: This is just like `int CurrentIndex` in Scenario Book, except is that this returns what index of the Scenario Sentence is selected.
   + `IScenarioPage PointTo(int n)`: The nth Scenario Sentence in the Scenario Page is selected. It is as well as we are about to read one sentence in tha paper-page.
   + `IScenarioSentence ReadSentence()`: This returns the Scenario Sentence that is currently selected.
   + `IEnumerable<IScenarioSentence> ReadAll()`: This returns all the Scenario Sentences in the Scenario Page.
-+ Scenario Book
++ Scenario Sentence
   + `object OnRead()`: When this method is called, the Scenario Method bound to the Scenario Sentence is invoked. The return type is `object`, and this value is actually the same as the value the Scenario Method returns. Therefore, this return value is no meaning if the return type of the Scenario Method is `void`. However, it is a very powerful means of handling asynchronous methods. See [`TaskFlow`](TaskFlow.md) section for more details.
 
 ### Extensions
