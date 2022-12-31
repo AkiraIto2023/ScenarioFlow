@@ -180,7 +180,7 @@ log.message	Hello, World!
 </Page>
 ```
 
-![HelloWorld Result](/HelloWorldResult.jpg)
+![HelloWorld Result](https://github.com/AkiraIto2023/ScenarioFlow/blob/main/Images/HelloWorldResult.jpg)
 
 ## Note
  + The character code of the text file **MUST BE UTF-8** encoding. A Shift-JIS encoding text file is not interpreted correctly, for example.
