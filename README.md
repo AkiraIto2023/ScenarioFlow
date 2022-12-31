@@ -244,7 +244,7 @@ public class CounterManager : MonoBehaviour
 }
 ```
 
-![Counter Manger Result](/SimpleCounterResult1.jpg)
+![Counter Manger Result](https://github.com/AkiraIto2023/ScenarioFlow/blob/main/Images/SimpleCounterResult1.jpg)
 
 ## 1st Step: Attach `ScenarioMethod` Attribute
 
@@ -434,7 +434,7 @@ In next section, we are going to learn how to write "scenario script" to call th
 
 Now, we should be able to see information about Scenario Method and Decoder we declared. Go to Scenario Method Table window via "Window/ScenarioMethodTable" on menu item.
 
-![Scenario Method Table](ScenarioMethodTable.jpg)
+![Scenario Method Table](https://github.com/AkiraIto2023/ScenarioFlow/blob/main/Images/ScenarioMethodTable.jpg)
 
 # Write, Publish, and Read Scenario Book to Invoke Scenario Method
 
@@ -863,7 +863,7 @@ Be careful not to mistake the tab for the space.
 
 When playing, we can continue reading by pressing the space key.
 
-![SampleSecenarioResult](SampleScenarioResult.jpg)
+![SampleSecenarioResult](https://github.com/AkiraIto2023/ScenarioFlow/blob/main/Images/SampleScenarioResult.jpg)
 
 ### Note
 
