@@ -24,7 +24,11 @@
     - [The Grammar of `TsvScenarioPublisher`](#the-grammar-of-tsvsceanriopublisher)
   - [Publish Scenario Book](#publish-scenario-book)
   - [Read Scenario Book](#read-scenario-book)
-
+- [Extras](#extras)
+  - [Put The Prefix for The Alias of The Scenario Method](#put-the-prefix-for-the-alias-of-the-scenario-method)
+  - [ExcelFlow for .xlsx File](#excelflow-for-xlsx-file)
+  - [TaskFlow for Asynchronous Method](#taskflow-for-asynchronous-method)
+  - [The Philosophy of The `IReflectable` Interface](#the-philosophy-of-the-ireflectable-interface)
 # Introduction
 
 ## Who uses Scenario Flow?
@@ -517,13 +521,13 @@ More details are described below:
   + `bool HasLabel(string label)` This simply returns whether the Scenario Book has given label or not.
   + `IScenarioPage ReadPage()`: This returns the Scenario Page that is currently opened.
   + `IEnumerable<IScenarioPage> ReadAll()`: This returns all the Scenario Pages in the Scenario Book.
-+ Scenario Page
++ Scenario Book
   + `int MaxIndex`: This is just like `int MaxIndex` in Scenario Book, except is that this returns the maximum index of the Scenario Sentence.
   + `int CurrentIndex`: This is just like `int CurrentIndex` in Scenario Book, except is that this returns what index of the Scenario Sentence is selected.
   + `IScenarioPage PointTo(int n)`: The nth Scenario Sentence in the Scenario Page is selected. It is as well as we are about to read one sentence in tha paper-page.
   + `IScenarioSentence ReadSentence()`: This returns the Scenario Sentence that is currently selected.
   + `IEnumerable<IScenarioSentence> ReadAll()`: This returns all the Scenario Sentences in the Scenario Page.
-+ Scenario Sentence
++ Scenario Book
   + `object OnRead()`: When this method is called, the Scenario Method bound to the Scenario Sentence is invoked. The return type is `object`, and this value is actually the same as the value the Scenario Method returns. Therefore, this return value is no meaning if the return type of the Scenario Method is `void`. However, it is a very powerful means of handling asynchronous methods. See [`TaskFlow`](TaskFlow.md) section for more details.
 
 ### Extensions
@@ -874,6 +878,58 @@ To use `ScenarioFlow` more practically, we should implement "Scenario Method Rea
 Then, [`TaskFlow`](TaskFlow.md), which is an optional tool of `ScenarioFlow`, provides the `ScenarioBookReader` class that implements the `IScenarioBookReader` interface. It enables us to use asyncronous method or open the Scenario Sentence that has particular `Label` in the Scenario Book easily.
 
 See [`TaskFlow`](TaskFlow.md) for more details, and if it is hard to implement the practical logic to read a Scenario Book, or you think the tool useful, consider using this.
+
+# Extras
+
+## Put The Prefix for The Alias of The Scenario Method
+
+We add the `SceanrioMethod` attribute to a method so that it become the Sceanrio Method. Actually, we can also add the attribute to a class and set its `alias` and `description`. Then, the alias affets all the aliases of the Scenario Methods in the class. The example is below:
+
+```cs:SimpleCounter.cs
+using ScenarioFlow;
+using UnityEngine;
+
+[ScenarioMethod("simple", "This provides simple counting.")]
+public class SimpleCounter : IReflectable
+{
+    private int count = 0;
+
+    [ScenarioMethod("set.count", "Change count to given number")]
+    public void SetCount(int n)
+    {
+        count = n;
+    }
+
+    [ScenarioMethod("log.count")]
+    public void LogCount()
+    {
+        Debug.Log($"The count is {count}!");
+    }
+
+    public object Reflect()
+    {
+        return this;
+    }
+}
+```
+
+Now, the two Scenario Methods `SetCount` and `LogCount` each has its alias with the prefix "simple." Go to Sceanrio Method Table via "Window/ScenarioMethodTable" and see their alias.
+
+![Prefix](https://github.com/AkiraIto2023/ScenarioFlow/blob/main/Images/Prefix.png)
+
+Note that the prefix is connected with the alias with the period.
+
+## ExcelFlow for .xlsx File
+
+`ExcelFlow` is an optional tool of `ScenarioFlow`. It enables us to use Shift-JIS encoding .xlsx file for creating Scenario Book. See [here](ExcelFlow.md/#excelflow) for the details.
+
+## TaskFlow for Asynchronous Method
+
+`TaskFlow` is an optional tool of `ScenarioFlow`. It enables us to handle asynchronous methods and make branches on the story by using the `OpenLabel` method in the `IScenarioBook` interface. This makes `SceanrioFlow` more useful. See [here](TaskFlow.md/#taskflow) for the details.
+
+## The Philosophy of The `IReflectable` Interface
+
+Under construction.
 
 # License
 
